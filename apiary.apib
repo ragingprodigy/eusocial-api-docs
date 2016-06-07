@@ -677,10 +677,15 @@ identified by the token provided
             "message": "Friend removed from Favourites"
         }
 
-## Discover Module [/discover]
+#Group DISCOVER [/discover]
 
-Handle interactions with the Events (including event creation, listing, management), Blogs, Blog Posts, Categories and Authors. The
-current user would be identified by the token supplied
+Handle interactions with the Events (including event creation, listing, management),
+Blogs, Blog Posts, Categories and Authors. The current user would be identified by
+the token supplied
+
+## Events Module 
+
+Handles Event Management
 
 ### Create an Event [POST /discover/events]
 
@@ -1026,6 +1031,10 @@ current user would be identified by the token supplied
         {
             "message": "Event cancelled successfully!"
         }
+
+## Blogs Module [/discover/blogs]
+
+Handles Blog Management
 
 ### View Top blog Posts [GET /discover/blogs/top_posts]
 
