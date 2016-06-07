@@ -23,19 +23,19 @@ In order to login, provide a JSON object with email and password keys.
             "email": "test@user.tld",
             "password": "password"
         }
-            
+
 + Response 400 (application/json)
 
         {
             "message": "Both the username and password fields are required!"
         }
-           
+
 + Response 401 (application/json)
 
         {
             "message": "Incorrect username/password"
         }
-        
+
 + Response 200 (application/json)
 
         {
@@ -79,7 +79,7 @@ In order to login, provide a JSON object with email and password keys.
                 "profileUrl": "",           // Url to Profile Picture
                 "coverUrl": "",             // Url to Cover Photo
                 "isStudent" : true/false    // to indicate whether user is studnt or lecturer
-                
+
             },
             "key": "823487859354",
             "token": "kj&^@*&^!jhgdhjdsgjbjsgqw87345hjgfjfh"
@@ -95,25 +95,25 @@ would expire in 7 days. This endpoint allows clients to fetch new tokens
         {
             "key": "73894acbf26"
         }
-            
+
 + Response 400 (application/json)
 
         {
             "message": "Invalid identity key"
         }
-           
+
 + Response 404 (application/json)
 
         {
             "message": "User not found"
         }
-        
+
 + Response 200 (application/json)
 
         {
             "token": "yweurt3274638&^*#&jhdshdfgj"
         }
-        
+
 ## Users Collection [/users/{user_id}]
 
 This collection deals with fetching and updating user data
@@ -125,23 +125,23 @@ for his own profile details but should limit fields when the caller doesn't
 own the profile
 
 + Request
-    
+
     + Headers
-    
+
             token: Bearer jhdhjsd274283&*^$&*#&hjgsdf3345&^&*
-            
+
 + Response 401 (application/json)
 
         {
             "message": "Invalid token or token expired!"
         }
-           
+
 + Response 404 (application/json)
 
         {
             "message": "User not found"
         }
-            
+
 + Response 200 (application/json)
 
         {
@@ -197,23 +197,23 @@ own the profile
 This enpoint shall also respect the target user's privacy settings
 
 + Request
-    
+
     + Headers
-    
+
             token: Bearer shfudgiru628364387*&^@&*$&*
-            
+
 + Response 401 (application/json)
 
         {
             "message": "Invalid token or token expired!"
         }
-           
+
 + Response 404 (application/json)
 
         {
             "message": "User not found"
         }
-            
+
 + Response 200 (application/json)
 
         [
@@ -229,32 +229,32 @@ This enpoint shall also respect the target user's privacy settings
                 "friendsSince": "", // Date
             }
         ]
-        
+
 ### Get a User's Courses [GET /user/{user_id}/courses]
 
 This would return the courses being taken by a Student and when called on behalf
 of a Lecturer, should return the courses assigned to the lecturer instead. This
-endpoint would determine the courses to return based on the semester and session 
+endpoint would determine the courses to return based on the semester and session
 that's set as active by the user's institution
 
 + Request
 
     + Headers
-            
+
             token: Bearer shfudgiru628364387*&^@&*$&*
-            
+
 + Response 401 (application/json)
 
         {
             "message": "Invalid token or token expired!"
         }
-           
+
 + Response 404 (application/json)
 
         {
             "message": "User not found"
         }
-            
+
 + Response 200 (application/json)
 
         [
@@ -272,13 +272,13 @@ This endpoint would allow for the update of only the fields specified in the pay
 Of course, the fields are optional but any additional field would be ignored.
 
 + Request
-    
+
     + Headers
-    
+
             token: Bearer shfudgiru628364387*&^@&*$&*
-            
+
     + Body
-    
+
             {
                 "username": "",
                 "dateOfBirth": "",
@@ -290,19 +290,19 @@ Of course, the fields are optional but any additional field would be ignored.
                 "nationality": "",
                 "hobbies": [ "", "", "" ]
             }
-            
+
 + Response 401 (application/json)
 
         {
             "message": "Invalid token or token expired!"
         }
-           
+
 + Response 404 (application/json)
 
         {
             "message": "User not found"
         }
-            
+
 + Response 201 (application/json)
 
         {
@@ -311,33 +311,33 @@ Of course, the fields are optional but any additional field would be ignored.
             "surname": ""
             // Updated User object
         }
-        
+
 ### Change Profile Picture [POST /users/{user_id}/photo]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 782687263488guywgsdut28346
-            
+
     + Body
-    
+
             {
                 "file": ""
             }
-        
+
 + Response 200 (application/json)
 
         {
             "message": "Upload successful!"
         }
-        
+
 ### Fetch Profile Photo Stream [GET /users/{user_id}/photo]
 
 + Response 200 (application/octet-stream)
 
         photograph.png
-        
+
 ## Newsfeed Module [/newsfeed]
 
 Handles everything related to the users' activity and newsfeed while respecting
@@ -349,9 +349,9 @@ the token provided
 + Request
 
     + Headers
-            
+
             token: Bearer 7627836sdfgsgdyuf*&@^74834
-            
+
 + Response 200 (application/json)
 
         [
@@ -366,15 +366,15 @@ the token provided
                 "date": ""
             }
         ]
-        
+
 ### Get Activity/News Feed for any user [GET /newsfeed/{id}]
 
 + Request
 
     + Header
-    
+
             token: Bearer 615272734^$^uygdus
-            
+
 + Response 200 (application/json)
 
         [
@@ -389,15 +389,15 @@ the token provided
                 "date": ""
             }
         ]
-            
+
 ### Like an Item in Activity Feed [POST /newsfeed/{id}/like]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 7826374868jdshgfdgf&*^237468
-            
+
 + Response 200 (application/json)
 
         {
@@ -410,29 +410,29 @@ the token provided
             "likes": [User], // Array of Two User Objects who are friends of the current user
             "date": ""
         }
-            
+
 ### Post a Status Update [POST]
 
 + Request
 
     + Headers
-            
+
             token: Bearer shfudgiru628364387*&^@&*$&*
-            
+
     + Body
-    
+
             {
                 "message": "",
                 "file": "", // Optional  (for image and videos)
                 "url": ""   // Optional
             }
-            
+
 + Response 400 (application/json)
 
         {
             "message": "Please provide either a message, link or file"
         }
-        
+
 + Response 401 (application/json)
 
         {
@@ -451,8 +451,8 @@ the token provided
             "likesString": "", // Example: James Wilson and Franklin Roosevelt
             "date": ""
         }
-            
-## Announcements Module [/announcements]   
+
+## Announcements Module [/announcements]
 
 Handles access to announcements within the system. The user would be identified
 by the token provided
@@ -462,9 +462,9 @@ by the token provided
 + Request
 
     + Headers
-            
+
             token: Bearer 87363875hsgfjhd73648732
-            
+
 + Response 200 (application/json)
 
         [
@@ -477,13 +477,13 @@ by the token provided
                 "url": ""
             }
         ]
-    
+
 ### Fetch Latest Announcement for a Single user [GET /announcements/latest]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 87363875hsgfjhd73648732
 
 + Response 200 (application/json)
@@ -496,22 +496,202 @@ by the token provided
             "dueDate": "",
             "url": ""
         }
-        
-## Events Module [/events]
 
-Handles event creation, listing, management (and promotions?).  Current user
-is inferred from the token provided
+## Search Module [/search]
 
-### Create an Event [POST]
+Search through all content available in EduSocial
+
+### Search through all content types [GET /search?q={term}]
 
 + Request
 
     + Headers
-            
-            token: Bearer 276347832sgfduyet783264
-            
+
+            token: Bearer 726354765347ugvuyf76234876
+
++ Response 200 (application/json)
+
+        {
+            "facets": {
+                "students": 234,
+                "lecturers": 12,
+                "events": 37,
+                "blogs": 82,
+                "announcements": 76
+            },
+            "meta": {
+                "searchTerm": "",
+                "total": 7637,
+                "page": 2,
+                "perPage": 20
+            },
+            "results": []
+        }
+
+## Social Module [/social]
+
+Handles all Social Elements and Interactions for EduSocial. Current user is
+identified by the token provided
+
+### Add a User as Friend [POST /social/add_friend]
+
++ Request
+
+    + Headers
+
+            token: Bearer 7182648763bjdhsgf763846
+
     + Body
-    
+
+            {
+                "user": ""      // User ID
+            }
+
++ Response 200 (application/json)
+
+        {
+            "message": "Friend request sent!"
+        }
+
+### Delete a User from Friends List [DELETE /social/friends/{friend_id}]
+
++ Request
+
+    + Headers
+
+            token: Bearer 78487263847gusdygfu6782648
+
++ Response 200 (application/json)
+
+        {
+            "message": "User removed successfully!"
+        }
+
+### Block a User [POST /social/friends/block]
+
++ Request
+
+    + Headers
+
+            token: Bearer 724872634ughsagduy78364284
+
+    + Body
+
+            {
+                "user": ""      // User ID
+            }
+
++ Response 200 (application/json)
+
+        {
+            "message": "User blocked successfully"
+        }
+
+### Get a List of Blocked Users [GET /social/friends/blocked]
+
++ Request
+
+    + Headers
+
+            token: Bearer 724872634ughsagduy78364284
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "",
+                "firstName": "",
+                "middleName": "",
+                "surname": "",
+                "username": "",
+                "nickname": ""
+            }
+        ]
+
+### Unblock a User [DELETE /social/friends/unblock/{user_id}]
+
++ Request
+
+    + Headers
+
+            token: Bearer 724872634ughsagduy78364284
+
++ Response 200 (application/json)
+
+        {
+            "message": "User unblocked"
+        }
+
+### Fetch List of Favourite Friends [GET /social/friends/favourites]
+
++ Request
+
+    + Headers
+
+            token: Bearer uyt87e2364876gd87t8462384
+
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "",
+                "firstName": "",
+                "middleName": "",
+                "surname": "",
+                "username": "",
+                "nickname": ""
+            }
+        ]
+
+### Add a Friend to Favourites [POST /social/friends/favourites]
+
++ Request
+
+    + Headers
+
+            token: Bearer uyt87e2364876gd87t8462384
+
+    + Body
+
+            {
+                "user": ""      // User ID
+            }
+
++ Response 200 (application/json)
+
+        {
+            "message": "Friend added to Favourites"
+        }
+
+### Remove a Friend from Favourited [DELETE /social/friends/favourites/{friend_id}]
+
++ Request
+
+    + Headers
+
+            token: Bearer uyt87e2364876gd87t8462384
+
++ Response 200 (application/json)
+
+        {
+            "message": "Friend removed from Favourites"
+        }
+
+## Discover Module [/discover]
+
+Handle interactions with the Events (including event creation, listing, management), Blogs, Blog Posts, Categories and Authors. The
+current user would be identified by the token supplied
+
+### Create an Event [POST /discover/events]
+
++ Request
+
+    + Headers
+
+            token: Bearer 276347832sgfduyet783264
+
+    + Body
+
             {
                 "title": "",
                 "description": "",
@@ -521,25 +701,25 @@ is inferred from the token provided
                 "venue": "",
                 "isPrivate": false
             }
-            
+
 + Response 400 (application/json)
 
         {
             "message": "Fields {x}, {y} and {z} are required"
         }
-        
+
 + Response 401 (application/json)
 
         {
             "message": "Invalid authorization token"
         }
-        
+
 + Response 403 (application/json)
 
         {
             "message": "You've exceeded your limits for free events"
         }
-            
+
 + Response 201 (application/json)
 
         {
@@ -560,17 +740,17 @@ is inferred from the token provided
             },
             "createdAt": ""
         }
-        
-### Update an Event [PUT /events/{event_id}]
+
+### Update an Event [PUT /discover/events/{event_id}]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 772364gudsyf8712687gdt8273e
-            
+
     + Body
-    
+
             {
                 "title": "",
                 "description": "",
@@ -580,7 +760,7 @@ is inferred from the token provided
                 "venue": "",
                 "isPrivate": false
             }
-            
+
 + Response 200 (application/json)
 
         {
@@ -602,14 +782,14 @@ is inferred from the token provided
             "createdAt": ""
         }
 
-### Get a List of events created by current user [GET /events/{user_id}]
+### Get a List of events created by current user [GET /discover/events/{user_id}]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 87267346sgfdjsdh723
-            
+
 + Response 200 (application/json)
 
         [
@@ -625,15 +805,15 @@ is inferred from the token provided
                 "attendeeCount": 75
             }
         ]
-        
-### Get List of Upcoming Events [GET /events/upcoming]
+
+### Get List of Upcoming Events [GET /discover/events/upcoming]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 7623864762178uggf3t2864
-            
+
 + Response 200 (application/json)
 
         [
@@ -650,14 +830,14 @@ is inferred from the token provided
             }
         ]
 
-### Get List of Top Events [GET /events/top]
+### Get List of Top Events [GET /discover/events/top]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 7527386hwgdt273846234
-            
+
 + Response 200
 
         [
@@ -674,14 +854,14 @@ is inferred from the token provided
             }
         ]
 
-### Retrieve Event Details [GET /events/detail/{event_id}]
+### Retrieve Event Details [GET /discover/events/detail/{event_id}]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 8723687uytyuewt7863424
-            
+
 + Response 200 (application/json)
 
         {
@@ -704,15 +884,15 @@ is inferred from the token provided
             },
             "createdAt": ""
         }
-        
-### Get the Attendees List for an Event [GET /events/{id}/attendees]
+
+### Get the Attendees List for an Event [GET /discover/events/{id}/attendees]
 
 + Request
-    
+
     + Headers
-            
+
             token: Bearer 763276428746gurwegy2t348
-            
+
 + Response 200 (application/json)
 
         [
@@ -725,14 +905,14 @@ is inferred from the token provided
             }
         ]
 
-### Get Events A User has been invited to [GET /events/invitations]
+### Get Events A User has been invited to [GET /discover/events/invitations]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 782687643684345
-            
+
 + Response 200
 
         [
@@ -758,14 +938,14 @@ is inferred from the token provided
             }
         ]
 
-### Get Events A User is scheduled to attend [GET /events/attending]
+### Get Events A User is scheduled to attend [GET /discover/events/attending]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 87126784623874hgweger2347
-            
+
 + Response 200 (application/json)
 
         [
@@ -791,16 +971,16 @@ is inferred from the token provided
             }
         ]
 
-### Invite Users to an Event [POST /event/{id}/invite]
+### Invite Users to an Event [POST /discover/events/{id}/invite]
 
 + Request
 
     + Headers
-    
+
             token: Bearer ui23487832984789h923y4982gdudf32
-            
+
     + Body
-            
+
             {
                 "friend": ""                // User ID of a single Friend
                 "friends": [ "", "", "" ]   // Array of User IDs
@@ -813,233 +993,48 @@ is inferred from the token provided
             "message": "Invite(s) Sent!"
         }
 
-### Accept or Decline Event Invitation [POST /events/{id}/invitation]
+### Accept or Decline Event Invitation [POST /discover/events/{id}/invitation]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 876328746ughwge872346846
-            
+
     + Body
-    
+
             {
                 "accept": true/false
             }
-            
+
 + Response 200 (application/json)
 
         {
             "message": "Invitation Accepted/Declined!"
         }
 
-### Cancel an Event [DELETE /events/{event_id}]
+### Cancel an Event [DELETE /discover/events/{event_id}]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 8236876438huwgdsf6723t423
-            
+
 + Response 200 (application/json)
 
         {
             "message": "Event cancelled successfully!"
         }
 
-## Search Module [/search]
-
-Search through all content available in EduSocial
-
-### Search through all content types [GET /search?q={term}]
+### View Top blog Posts [GET /discover/blogs/top_posts]
 
 + Request
 
     + Headers
-    
-            token: Bearer 726354765347ugvuyf76234876
-            
-+ Response 200 (application/json)
 
-        {
-            "facets": {
-                "students": 234,
-                "lecturers": 12,
-                "events": 37,
-                "blogs": 82,
-                "announcements": 76
-            },
-            "meta": {
-                "searchTerm": "",
-                "total": 7637,
-                "page": 2,
-                "perPage": 20
-            },
-            "results": []
-        }
-
-## Social Module [/social]
-
-Handles all Social Elements and Interactions for EduSocial. Current user is 
-identified by the token provided
-
-### Add a User as Friend [POST /social/add_friend]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer 7182648763bjdhsgf763846
-            
-    + Body
-    
-            {
-                "user": ""      // User ID
-            }
-            
-+ Response 200 (application/json)
-
-        {
-            "message": "Friend request sent!"
-        }
-
-### Delete a User from Friends List [DELETE /social/friends/{friend_id}]
-
-+ Request
-
-    + Headers
-        
-            token: Bearer 78487263847gusdygfu6782648
-            
-+ Response 200 (application/json)
-
-        {
-            "message": "User removed successfully!"
-        }
-
-### Block a User [POST /social/friends/block]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer 724872634ughsagduy78364284
-            
-    + Body
-    
-            {
-                "user": ""      // User ID
-            }
-
-+ Response 200 (application/json)
-
-        {
-            "message": "User blocked successfully"
-        }
-
-### Get a List of Blocked Users [GET /social/friends/blocked]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer 724872634ughsagduy78364284
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "_id": "",
-                "firstName": "",
-                "middleName": "",
-                "surname": "",
-                "username": "",
-                "nickname": ""
-            }
-        ]
-
-### Unblock a User [DELETE /social/friends/unblock/{user_id}]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer 724872634ughsagduy78364284
-            
-+ Response 200 (application/json)
-
-        {
-            "message": "User unblocked"
-        }
-
-### Fetch List of Favourite Friends [GET /social/friends/favourites]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer uyt87e2364876gd87t8462384
-            
-+ Response 200 (application/json)
-
-        [
-            {
-                "_id": "",
-                "firstName": "",
-                "middleName": "",
-                "surname": "",
-                "username": "",
-                "nickname": ""
-            }
-        ]
-
-### Add a Friend to Favourites [POST /social/friends/favourites]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer uyt87e2364876gd87t8462384
-            
-    + Body
-    
-            {
-                "user": ""      // User ID
-            }
-            
-+ Response 200 (application/json)
-
-        {
-            "message": "Friend added to Favourites"
-        }
-
-### Remove a Friend from Favourited [DELETE /social/friends/favourites/{friend_id}]
-
-+ Request
-
-    + Headers
-    
-            token: Bearer uyt87e2364876gd87t8462384
-            
-+ Response 200 (application/json)
-
-        {
-            "message": "Friend removed from Favourites"
-        }
-
-## Blog Module [/blog]
-
-Handle interactions with the Blogs, Blog Posts, Categories and Authors. The
-current user would be identified by the token supplied
-
-### View Top blog Posts [GET /blog/top_posts]
-
-+ Request
-
-    + Headers
-            
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1063,14 +1058,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View User's Published Posts [GET /blog/my_posts]
+### View User's Published Posts [GET /discover/blogs/my_posts]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1094,14 +1089,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View Posts By Author [GET /blog/author/{author_id}]
+### View Posts By Author [GET /discover/blogs/author/{author_id}]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1125,14 +1120,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View Top Authors [GET /blog/top_authors]
+### View Top Authors [GET /discover/blogs/top_authors]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1143,14 +1138,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View Top Categories [GET /blog/top_categories]
+### View Top Categories [GET /discover/blogs/top_categories]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1166,14 +1161,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View All Categories [GET /blog/categories]
+### View All Categories [GET /discover/blogs/categories]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1191,14 +1186,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View Posts By Category [GET /blog/category/{category_id}]
+### View Posts By Category [GET /discover/blogs/category/{category_id}]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1222,14 +1217,14 @@ current user would be identified by the token supplied
             }
         ]
 
-### View Post Details [GET /blog/{post_id}]
+### View Post Details [GET /discover/blogs/{post_id}]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         {
@@ -1253,14 +1248,14 @@ current user would be identified by the token supplied
             "creator": ""           // ID of the User
         }
 
-### Fetch Comments for a Blog Post [GET /blog/{post_id}/comments]
+### Fetch Comments for a Blog Post [GET /discover/blogs/{post_id}/comments]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1279,20 +1274,20 @@ current user would be identified by the token supplied
             }
         ]
 
-### Post Comment to a Blog Post [POST /blog/{post_id}/comments]
+### Post Comment to a Blog Post [POST /discover/blogs/{post_id}/comments]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 78628487623784hgsfdgfu783
-            
+
     + Body
-    
+
             {
                 "comment": ""
             }
-            
+
 + Response 201 (application/json)
 
         {
@@ -1309,14 +1304,14 @@ current user would be identified by the token supplied
             "downVotes": 12
         }
 
-### Delete Comment from a Blog Post [DELETE /blog/{post_id}/comments/{comment_id}]
+### Delete Comment from a Blog Post [DELETE /discover/blogs/{post_id}/comments/{comment_id}]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 7248723648bhsjdgf786348734
-            
+
 + Response 200 (application/json)
 
         {
@@ -1324,20 +1319,20 @@ current user would be identified by the token supplied
         }
 
 
-### Upvote a Post Comment [POST /blog/{post_id}/up_vote]
+### Upvote a Post Comment [POST /discover/blogs/{post_id}/up_vote]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 78236487263hsdjfg7832684
-            
+
     + Body
-    
+
             {
                 "comment_id": ""
             }
-            
+
 + Response 200 (application/json)
 
         {
@@ -1354,20 +1349,20 @@ current user would be identified by the token supplied
             "downVotes": 12
         }
 
-### Downvote a Post Comment [POST /blog/{post_id}/down_vote]
+### Downvote a Post Comment [POST /discover/blogs/{post_id}/down_vote]
 
 + Request
 
     + Headers
-    
+
             token: Bearer 78236487263hsdjfg7832684
-            
+
     + Body
-    
+
             {
                 "comment_id": ""
             }
-            
+
 + Response 200 (application/json)
 
         {
@@ -1384,14 +1379,14 @@ current user would be identified by the token supplied
             "downVotes": 12
         }
 
-### Get a List of Favourite Blog Posts [GET /blog/favourites]
+### Get a List of Favourite Blog Posts [GET /discover/blogs/favourites]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         [
@@ -1415,34 +1410,34 @@ current user would be identified by the token supplied
             }
         ]
 
-### Add Post to Favourites [POST /blog/favourites]
+### Add Post to Favourites [POST /discover/blogs/favourites]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
     + Body
-        
+
             {
                 "post_id": ""
             }
-            
+
 + Response 200 (application/json)
 
         {
             "message": "Post marked as favourite"
         }
 
-### Remove Post from Favourites [DELETE /blog/favourites/{post_id}]
+### Remove Post from Favourites [DELETE /discover/blogs/favourites/{post_id}]
 
 + Request
 
     + Headers
-            
+
             token: Bearer 8126487623874gbsjdhfg7868746
-            
+
 + Response 200 (application/json)
 
         {
@@ -1456,9 +1451,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 836486873grudfysg82735648273
-            
+
 + Response 200 (application/json)
 
         [
@@ -1487,9 +1482,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 7635834grb4ry23792rh9238
-            
+
 + Response 200 (application/json)
 
         {
@@ -1524,9 +1519,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 836289hfry9237y23985789
-            
+
 + Response 200 (application/json)
 
         [
@@ -1544,9 +1539,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 7836248ge8237ry38ry87y23
-            
+
 + Response 200 (application/json)
 
         [
@@ -1571,9 +1566,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 872638rg7832y7858rh8752
-            
+
 + Response 200 (application/json)
 
         {
@@ -1585,9 +1580,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer 876328rg827t373568r287t8345
-            
+
 + Response 200 (application/json)
 
         {
@@ -1601,9 +1596,9 @@ current user would be identified by the token supplied
 + Request
 
     + Headers
-    
+
             token: Bearer ye823764823r872365827535
-            
+
 + Response 200 (application/json)
 
         [
