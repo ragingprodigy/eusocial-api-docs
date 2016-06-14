@@ -75,7 +75,7 @@ In order to login, provide a JSON object with email and password keys.
                 "username": "",
                 "matric": "",               // default is null
                 "hobbies": [ "", "" ],
-                "friendCount": 234,
+                "friends": [ "", "" ],
                 "profileUrl": "",           // Url to Profile Picture
                 "coverUrl": "",             // Url to Cover Photo
                 "isStudent" : true/false    // to indicate whether user is studnt or lecturer
@@ -179,7 +179,7 @@ own the profile
             },
             "username": "",
             "matric": "",
-            "friendCount": 234,
+            "friends": ["", "", ""],
             "profileUrl": "",           // Url to Profile Picture
             "coverUrl": "",             // Url to Cover Photo
             "phoneNumber": "",
@@ -356,14 +356,44 @@ the token provided
 
         [
             {
-                "_id": "",
-                "message": "",
+                "_id": "23746dshgjgf",
+                "message": "This is a description of all endpoints needed by Mobile and Web Clients for interaction with the EduSocial service.",
                 "url": "",
-                "type": "", // (link, text, image, video),
+                "type": "text", // (link, text, image, video),
                 "likeCount": 34,
                 "likedByMe": true,
                 "likes": [User], // Array of Two User Objects who are friends of the current user
-                "date": ""
+                "date": 1255374
+            },
+            {
+                "_id": "34543857",
+                "message": "",
+                "url": "https://www.rit.edu/science/sites/rit.edu.science/files/root/Santoru-Jennifer.png",
+                "type": "image", // (link, text, image, video),
+                "likeCount": 4,
+                "likedByMe": false,
+                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "date": 10278735
+            },
+            {
+                "_id": "23478gdsuf87",
+                "message": "As an aside, I think we should consider: https://github.com/dylang/shortid for Object ID generation.",
+                "url": "",
+                "type": "text", // (link, text, image, video),
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "date": 10355374
+            },
+            {
+                "_id": "8237482374",
+                "message": "",
+                "url": "http://omonayajo.com",
+                "type": "link", // (link, text, image, video),
+                "likeCount": 23,
+                "likedByMe": true,
+                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "date": 10355374
             }
         ]
 
@@ -600,8 +630,8 @@ identified by the token provided
         [
             {
                 "_id": "",
-                "firstName": "",
-                "middleName": "",
+                "firstname": "",
+                "middleame": "",
                 "surname": "",
                 "username": "",
                 "nickname": ""
@@ -635,8 +665,8 @@ identified by the token provided
         [
             {
                 "_id": "",
-                "firstName": "",
-                "middleName": "",
+                "firstname": "",
+                "middlename": "",
                 "surname": "",
                 "username": "",
                 "nickname": ""
@@ -1617,5 +1647,69 @@ Handles Blog Management
                 "coverUrl": "",
                 "url": "",
                 "type": ""
+            }
+        ]
+        
+## Assessment Module [/assessment]
+### Get a list of pending assessments [GET]
+Assessments can come in three different modes: multiple choice, where students are meants to pick options from the 
+predefined ones, essay: where the students are meant to type the answer themselves and image based: this is an image
+that contains the questions and possible an answer that the students are meant to type 
+the answer. The image based is majorly for lecturers who are too lazy to type the questions. 
+
++ Request
+
+    + Headers
+    
+            token: Bearer ye823764823r872365827535
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "_id": "",
+                "course": "243562-hkshc-jchsd-cdhd=",
+                "questions": [
+                    {
+                        "orderNo": 1,
+                        "type": "choice",
+                        "title": "What is the capital of Nigeria ?",
+                        "options": [
+                            "optionA": "Lagos",
+                            "optionB": "Ibadan",
+                            "optionC": "Abuja",
+                            "optionD": "Edo"
+                        ],
+                        "instruction": "Answer 2 out of 3"
+                    },
+                    {
+                        "orderNo": 2,
+                        "type": "essay",
+                        "title": "What is the capital of Nigeria ?",
+                        "instruction": "Answer 2 out of 3"
+                    },
+                    {
+                        "orderNo": 3,
+                        "type": "image",
+                        "imageUrl": "http://s3.aws.com/edusocial/126-8bdhs-3789287.jpg",
+                        "instruction": "Answer 2 out of 3"
+                    }
+                ],
+                "answers": [
+                    {
+                        "orderNo": 1,
+                        "answer": "abuja"
+                    },
+                    {
+                        "orderNo": 2,
+                        "answer": "abuja"
+                    },
+                    {
+                        "orderNo": 3,
+                        "answer": "abuja"
+                    }
+                ],
+                "showAnswers": "true/false",
+                "timeAllocated": "null/20(in minutes)"
             }
         ]
