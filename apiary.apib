@@ -24,18 +24,6 @@ In order to login, provide a JSON object with email and password keys.
             "password": "password"
         }
 
-+ Response 400 (application/json)
-
-        {
-            "message": "Both the username and password fields are required!"
-        }
-
-+ Response 401 (application/json)
-
-        {
-            "message": "Incorrect username/password"
-        }
-
 + Response 200 (application/json)
 
         {
@@ -58,7 +46,7 @@ In order to login, provide a JSON object with email and password keys.
                     "name": ""
                 },
                 "level": {
-                    "_id": "",                  // default would be null for lecturers and graduated students
+                    "_id": "",
                     "hashcode": "",
                     "name": ""
                 },
@@ -73,18 +61,30 @@ In order to login, provide a JSON object with email and password keys.
                     "name": ""
                 },
                 "username": "",
-                "matric": "",               // default is null
+                "matric": "", 
                 "hobbies": [ "", "" ],
                 "friends": [ "", "" ],
-                "profileUrl": "",           // Url to Profile Picture
-                "coverUrl": "",             // Url to Cover Photo
-                "isStudent" : true/false    // to indicate whether user is studnt or lecturer
+                "profileUrl": "",
+                "coverUrl": "", 
+                "isStudent" : true
 
             },
             "key": "823487859354",
             "token": "kj&^@*&^!jhgdhjdsgjbjsgqw87345hjgfjfh"
         }
 
++ Response 400 (application/json)
+
+        {
+            "message": "Both the username and password fields are required!"
+        }
+
++ Response 401 (application/json)
+
+        {
+            "message": "Incorrect username/password"
+        }
+        
 ### Request for new Token [POST /auth/{user_id}/token]
 
 The token generated at login (including the one returned by this endpoint)
@@ -357,42 +357,300 @@ the token provided
         [
             {
                 "_id": "23746dshgjgf",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
                 "message": "This is a description of all endpoints needed by Mobile and Web Clients for interaction with the EduSocial service.",
                 "url": "",
-                "type": "text", // (link, text, image, video),
+                "type": "text",
                 "likeCount": 34,
                 "likedByMe": true,
-                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "likes": [],
                 "date": 1255374
             },
             {
                 "_id": "34543857",
-                "message": "",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "james williams changed his profile picture",
                 "url": "https://www.rit.edu/science/sites/rit.edu.science/files/root/Santoru-Jennifer.png",
-                "type": "image", // (link, text, image, video),
+                "type": "image",
                 "likeCount": 4,
                 "likedByMe": false,
-                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "likes": [],
                 "date": 10278735
             },
             {
                 "_id": "23478gdsuf87",
+                "author": {
+                    "_id": "23534534",
+                    "firstName": "Phillip",
+                    "surname": "Cork",
+                    "username": "pcork",
+                    "nickname": "cocky-phil"
+                },
                 "message": "As an aside, I think we should consider: https://github.com/dylang/shortid for Object ID generation.",
                 "url": "",
-                "type": "text", // (link, text, image, video),
+                "type": "text",
                 "likeCount": 34,
                 "likedByMe": true,
-                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "likes": [],
                 "date": 10355374
             },
             {
                 "_id": "8237482374",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
                 "message": "",
-                "url": "http://omonayajo.com",
-                "type": "link", // (link, text, image, video),
+                "url": "http://edition.cnn.com",
+                "type": "link",
                 "likeCount": 23,
                 "likedByMe": true,
-                "likes": [User], // Array of Two User Objects who are friends of the current user
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "8237482374",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "eventDate": "19th June, 2016 - 05:00pm",
+                "organizer": {
+                    "_id": "387493485",
+                    "firstName": "Uju",
+                    "surname": "Ezeanyagu",
+                    "username": "ujueze",
+                    "nickname": "nne"
+                },
+                "message": "Birthday Party for the outgoing NESA President at Awolowo Hall",
+                "url": "http://edition.cnn.com",
+                "type": "event",
+                "likeCount": 23,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "23746dshgjgf",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "This is a description of all endpoints needed by Mobile and Web Clients for interaction with the EduSocial service.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 1255374
+            },
+            {
+                "_id": "34543857",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "Look who I found wandering around the dormitories this evening. Bet she doesn't know where she's headed. Maybe I should show her...",
+                "url": "https://www.rit.edu/science/sites/rit.edu.science/files/root/Santoru-Jennifer.png",
+                "type": "image",
+                "likeCount": 4,
+                "likedByMe": false,
+                "likes": [],
+                "date": 10278735
+            },
+            {
+                "_id": "23478gdsuf87",
+                "author": {
+                    "_id": "23534534",
+                    "firstName": "Phillip",
+                    "surname": "Cork",
+                    "username": "pcork",
+                    "nickname": "cocky-phil"
+                },
+                "message": "As an aside, I think we should consider: https://github.com/dylang/shortid for Object ID generation.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "8237482374",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "",
+                "url": "http://youtube.com",
+                "type": "link",
+                "likeCount": 23,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            
+            {
+                "_id": "23746dshgjgf",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "This is a description of all endpoints needed by Mobile and Web Clients for interaction with the EduSocial service.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 1255374
+            },
+            {
+                "_id": "34543857",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "",
+                "url": "https://www.rit.edu/science/sites/rit.edu.science/files/root/Santoru-Jennifer.png",
+                "type": "image",
+                "likeCount": 4,
+                "likedByMe": false,
+                "likes": [],
+                "date": 10278735
+            },
+            {
+                "_id": "23478gdsuf87",
+                "author": {
+                    "_id": "23534534",
+                    "firstName": "Phillip",
+                    "surname": "Cork",
+                    "username": "pcork",
+                    "nickname": "cocky-phil"
+                },
+                "message": "As an aside, I think we should consider: https://github.com/dylang/shortid for Object ID generation.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "8237482374",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "",
+                "url": "http://facebook.com",
+                "type": "link",
+                "likeCount": 23,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "23746dshgjgf",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "This is a description of all endpoints needed by Mobile and Web Clients for interaction with the EduSocial service.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 1255374
+            },
+            {
+                "_id": "34543857",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "",
+                "url": "https://www.rit.edu/science/sites/rit.edu.science/files/root/Santoru-Jennifer.png",
+                "type": "image",
+                "likeCount": 4,
+                "likedByMe": false,
+                "likes": [],
+                "date": 10278735
+            },
+            {
+                "_id": "23478gdsuf87",
+                "author": {
+                    "_id": "23534534",
+                    "firstName": "Phillip",
+                    "surname": "Cork",
+                    "username": "pcork",
+                    "nickname": "cocky-phil"
+                },
+                "message": "As an aside, I think we should consider: https://github.com/dylang/shortid for Object ID generation.",
+                "url": "",
+                "type": "text",
+                "likeCount": 34,
+                "likedByMe": true,
+                "likes": [],
+                "date": 10355374
+            },
+            {
+                "_id": "8237482374",
+                "author": {
+                    "_id": "782638764",
+                    "firstName": "James",
+                    "surname": "Williams",
+                    "username": "james_williams",
+                    "nickname": "jamie-walsh"
+                },
+                "message": "",
+                "url": "http://goal.com/en-gb/",
+                "type": "link",
+                "likeCount": 23,
+                "likedByMe": true,
+                "likes": [],
                 "date": 10355374
             }
         ]
